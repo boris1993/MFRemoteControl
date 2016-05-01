@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">大型机远程管理</string>
+    <string name="btn_reset">复位</string>
+    <string name="addr_hint">IP地址或主机名</string>
+    <string name="hint_password">密码</string>
+    <string name="hint_username">用户名</string>
+    <string name="exit_notify">再按一次返回键以退出</string>
+    <string name="menu_exit">退出</string>
+    <string name="menu_delete">删除</string>
+    <string name="menu_edit">编辑</string>
+    <string name="title_operate">操作</string>
+    <string name="title_serverSelect">选择服务器</string>
+    <string name="toast_conn_fail">连接失败</string>
+    <string name="toast_conn_succ">连接成功</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_other">自定义JCL</string>
+    <string name="btn_update">更新</string>
+    <string name="hint_name">服务器名</string>
+    <string name="title_chooseJcl">选择一个JCL</string>
+    <string name="title_edit">编辑主机信息</string>
+    <string name="toast_filemanNotFound">请安装文件管理器</string>
+    <string name="toast_submitOk">JCL已提交</string>
+    <string name="toast_uploadFail">JCL上传失败</string>
+    <string name="toast_connecting">连接中.....</string>
+    <string name="btn_submit"></string>
+    <string name="menu_serverSelect"></string>
+    <string name="txt_defPort" translatable="false"></string>
+</resources>

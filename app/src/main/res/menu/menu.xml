@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".AddServerActivity">
+    <item
+        android:id="@+id/menu_exit"
+        android:showAsAction="always"
+        android:title="@string/menu_exit"
+        tools:ignore="AppCompatResource"/>
+    <item
+        android:id="@+id/menu_addServer"
+        android:showAsAction="always"
+        android:title="@string/menu_addServer"
+        tools:ignore="AppCompatResource"/>
+</menu>

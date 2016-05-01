@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MFRemoteControl</string>
+    <string name="btn_submit">ADD</string>
+    <string name="btn_reset">RESET</string>
+    <string name="addr_hint">IP ADDRESS OR HOSTNAME</string>
+    <string name="hint_username">USERNAME</string>
+    <string name="hint_password">PASSWORD</string>
+    <string name="exit_notify">Press again to exit</string>
+    <string name="menu_exit">EXIT</string>
+    <string name="menu_serverSelect">ADD NEW SERVER</string>
+    <string name="title_serverSelect">SELECT SERVER</string>
+    <string name="title_add">ADD NEW SERVER</string>
+    <string name="title_operate">OPERATIONS</string>
+    <string name="menu_delete">DELETE</string>
+    <string name="menu_edit">EDIT</string>
+    <string name="toast_conn_succ">CONNECT SUCCESSFUL</string>
+    <string name="toast_conn_fail">CONNECT FAILED</string>
+    <string name="btn_other">CUSTOM JCL</string>
+    <string name="title_chooseJcl">CHOOSE A JCL</string>
+    <string name="toast_uploadFail">JCL UPLOAD FAILED</string>
+    <string name="toast_submitOk">JCL SUBMITTED</string>
+    <string name="btn_update">UPDATE</string>
+    <string name="hint_name">SERVER NAME</string>
+    <string name="title_edit">EDIT SERVER</string>
+    <string name="btn_cancel">CANCEL</string>
+    <string name="toast_filemanNotFound">Please install a file manager</string>
+    <string name="toast_connecting">CONNECTING.....</string>
+    <string name="menu_add">ADD</string>
+    <string name="menu_addServer">ADD A NEW SERVER</string>
+    <string name="hint_port">PORT</string>
+    <string name="hint_serverName">SERVER NAME</string>
+    <string name="txt_defPort" translatable="false">21</string>
+</resources>

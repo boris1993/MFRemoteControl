@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context=".AddServerActivity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAddress"
+        android:layout_alignParentStart="true"
+        android:inputType="textNoSuggestions|textUri|text"
+        android:hint="@string/addr_hint"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPort"
+        android:layout_alignTop="@+id/txtAddress"
+        android:layout_toEndOf="@+id/txtAddress"
+        android:hint="@string/hint_port"
+        android:text="@string/txt_defPort"
+        android:inputType="number"
+        android:singleLine="true"
+        />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtUsername"
+        android:layout_below="@+id/txtAddress"
+        android:layout_alignParentStart="true"
+        android:hint="@string/hint_username"
+        android:maxLines="1"
+        android:inputType="text"
+        android:layout_alignEnd="@+id/txtPassword"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/txtPassword"
+        android:layout_below="@+id/txtUsername"
+        android:layout_alignParentStart="true"
+        android:hint="@string/hint_password"
+        android:maxLines="1"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtName"
+        android:layout_below="@+id/txtPassword"
+        android:layout_alignParentStart="true"
+        android:hint="@string/hint_serverName"
+        android:singleLine="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_submit"
+        android:id="@+id/btnSubmit"
+        android:layout_below="@+id/txtName"
+        android:layout_alignEnd="@+id/btnReset"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_reset"
+        android:id="@+id/btnReset"
+        android:layout_below="@+id/btnSubmit"
+        android:layout_alignParentStart="true"
+        android:imeOptions="actionDone"/>
+
+</RelativeLayout>
