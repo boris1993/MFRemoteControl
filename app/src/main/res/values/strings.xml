@@ -7,7 +7,6 @@
     <string name="hint_password">PASSWORD</string>
     <string name="exit_notify">Press again to exit</string>
     <string name="menu_exit">EXIT</string>
-    <string name="menu_serverSelect">ADD NEW SERVER</string>
     <string name="title_serverSelect">SELECT SERVER</string>
     <string name="title_add">ADD NEW SERVER</string>
     <string name="title_operate">OPERATIONS</string>

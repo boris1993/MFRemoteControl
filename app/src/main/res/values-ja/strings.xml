@@ -23,4 +23,12 @@
     <string name="toast_submitOk">JCL提出</string>
     <string name="toast_uploadFail">JCLは、アップロード失敗しました</string>
     <string name="toast_connecting">接続します</string>
+    <string name="btn_kick">自分を追い出します</string>
+    <string name="btn_submit">新しいサーバーを追加します</string>
+    <string name="hint_port">ポート</string>
+    <string name="hint_serverName">サーバーの名前</string>
+    <string name="menu_addServer">新しいサーバーを追加します</string>
+    <string name="menu_add">追加</string>
+    <string name="title_add">新しいサーバーを追加します</string>
+    <string name="toast_file_create_fail">JCLファイルの作成に失敗しました</string>
 </resources>

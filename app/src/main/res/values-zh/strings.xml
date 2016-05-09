@@ -24,11 +24,11 @@
     <string name="toast_uploadFail">JCL上传失败</string>
     <string name="toast_connecting">连接中.....</string>
     <string name="btn_submit">添加</string>
-    <string name="menu_serverSelect">添加服务器</string>
-    <string name="txt_defPort" translatable="false"></string>
     <string name="hint_port">端口</string>
     <string name="hint_serverName">服务器名</string>
     <string name="menu_add">添加</string>
     <string name="menu_addServer">添加服务器</string>
     <string name="title_add">添加服务器</string>
+    <string name="btn_kick">踢掉自己的会话</string>
+    <string name="toast_file_create_fail">JCL生成失败</string>
 </resources>
