@@ -131,7 +131,7 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
         protected void onPostExecute(String result) {
             if (execStat.equals("FAILED")) {
                 Toast.makeText(OperateActivity.this, execStat, Toast.LENGTH_SHORT).show();
-            } else if (execStat.equals( "JCL SUBMITTED")) {
+            } else if (execStat.equals("JCL SUBMITTED")) {
                 Toast.makeText(OperateActivity.this, "Check jesout.txt for the output", Toast.LENGTH_SHORT).show();
             }
         }
@@ -144,7 +144,7 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_operate);
 
         btnOther = (Button) findViewById(R.id.btn_other);
-        if(btnOther != null) {
+        if (btnOther != null) {
             btnOther.setOnClickListener(this);
         }
 
@@ -165,14 +165,12 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
         if (keyCode == KeyEvent.KEYCODE_BACK && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-            Intent intent = new Intent(this, ServerSelectActivity.class);
             // Description for the next expression:
             // If set, and the activity being launched is already running in the current task,
             // then instead of launching a new instance of that activity,
             // all of the other activities on top of it will be closed
             // and this Intent will be delivered to the (now on top) old activity as a new Intent.
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            startActivity(new Intent(this, ServerSelectActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         }
         return super.onKeyDown(keyCode, keyEvent);
     }
@@ -190,9 +188,9 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         try {
             startActivityForResult(
-                    Intent.createChooser(intent,
-                            getString(R.string.title_chooseJcl)),
-                    FILE_SELECT_CODE);
+                    Intent.createChooser(intent, getString(R.string.title_chooseJcl)),
+                    FILE_SELECT_CODE
+            );
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, getString(R.string.toast_filemanNotFound), Toast.LENGTH_SHORT).show();
         }

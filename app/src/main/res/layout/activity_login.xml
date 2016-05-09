@@ -15,7 +15,7 @@
         android:id="@+id/txtAddress"
         android:layout_alignParentStart="true"
         android:inputType="textNoSuggestions|textUri|text"
-        android:hint="@string/addr_hint"
+        android:hint="@string/hint_addr"
         android:maxLines="1"
         android:singleLine="true"
         android:imeOptions="actionNext"/>
@@ -78,7 +78,6 @@
         android:text="@string/btn_reset"
         android:id="@+id/btnReset"
         android:layout_below="@+id/btnSubmit"
-        android:layout_alignParentStart="true"
-        android:imeOptions="actionDone"/>
+        android:layout_alignParentStart="true"/>
 
 </RelativeLayout>

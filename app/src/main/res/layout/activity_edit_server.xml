@@ -24,7 +24,7 @@
         android:id="@+id/txtAddress"
         android:layout_below="@+id/txtServerName"
         android:layout_alignParentStart="true"
-        android:hint="@string/addr_hint"
+        android:hint="@string/hint_addr"
         />
 
     <EditText

@@ -2,7 +2,7 @@
     <string name="app_name">MFRemoteControl</string>
     <string name="btn_submit">ADD</string>
     <string name="btn_reset">RESET</string>
-    <string name="addr_hint">IP ADDRESS OR HOSTNAME</string>
+    <string name="hint_addr">IP ADDRESS OR HOSTNAME</string>
     <string name="hint_username">USERNAME</string>
     <string name="hint_password">PASSWORD</string>
     <string name="exit_notify">Press again to exit</string>

@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">大型机远程管理</string>
     <string name="btn_reset">复位</string>
-    <string name="addr_hint">IP地址或主机名</string>
+    <string name="hint_addr">IP地址或主机名</string>
     <string name="hint_password">密码</string>
     <string name="hint_username">用户名</string>
     <string name="exit_notify">再按一次返回键以退出</string>
@@ -23,7 +23,12 @@
     <string name="toast_submitOk">JCL已提交</string>
     <string name="toast_uploadFail">JCL上传失败</string>
     <string name="toast_connecting">连接中.....</string>
-    <string name="btn_submit"></string>
-    <string name="menu_serverSelect"></string>
+    <string name="btn_submit">添加</string>
+    <string name="menu_serverSelect">添加服务器</string>
     <string name="txt_defPort" translatable="false"></string>
+    <string name="hint_port">端口</string>
+    <string name="hint_serverName">服务器名</string>
+    <string name="menu_add">添加</string>
+    <string name="menu_addServer">添加服务器</string>
+    <string name="title_add">添加服务器</string>
 </resources>

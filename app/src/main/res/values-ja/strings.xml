@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">MFRemoteControl</string>
     <string name="btn_reset">リセット</string>
-    <string name="addr_hint"> IPアドレスまたはホスト名</string>
+    <string name="hint_addr"> IPアドレスまたはホスト名</string>
     <string name="hint_password"> パスワード</string>
     <string name="hint_username">ユーザー名</string>
     <string name="exit_notify">もう一度押すと終了します</string>

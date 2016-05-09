@@ -85,8 +85,7 @@ public class EditServerActivity extends AppCompatActivity implements View.OnClic
             case R.id.btn_edit_update:
                 dbHelper = new DbHelper(this);
                 db = dbHelper.getWritableDatabase();
-                db.execSQL("UPDATE " + DbHelper.TABLE
-                        + " SET "
+                db.execSQL("UPDATE " + DbHelper.TABLE + " SET "
                         + DbHelper.C_NAME + "='" + txtServerName.getText().toString() + "',"
                         + DbHelper.C_ADDRESS + "='" + txtAddr.getText().toString() + "',"
                         + DbHelper.C_PORT + "='" + txtPort.getText().toString() + "',"
