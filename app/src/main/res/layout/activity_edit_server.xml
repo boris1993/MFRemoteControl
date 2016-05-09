@@ -18,23 +18,36 @@
         android:layout_alignParentStart="true"
         android:hint="@string/hint_name"/>
 
-    <EditText
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtAddress"
         android:layout_below="@+id/txtServerName"
         android:layout_alignParentStart="true"
-        android:hint="@string/hint_addr"
-        />
+        android:id="@+id/tableLayout2">
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtPort"
-        android:layout_alignTop="@+id/txtAddress"
-        android:layout_toEndOf="@+id/txtAddress"
-        android:hint="@string/hint_port"
-        />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtAddress"
+                android:layout_below="@+id/txtServerName"
+                android:layout_alignParentStart="true"
+                android:hint="@string/hint_addr"
+                android:layout_weight="8"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtPort"
+                android:layout_alignTop="@+id/txtAddress"
+                android:layout_toEndOf="@+id/txtAddress"
+                android:hint="@string/hint_port"
+                android:layout_weight="2"/>
+        </TableRow>
+    </TableLayout>
 
     <EditText
         android:layout_width="match_parent"
@@ -42,7 +55,7 @@
         android:ems="10"
         android:id="@+id/txtUsername"
         android:hint="@string/hint_username"
-        android:layout_below="@+id/txtAddress"
+        android:layout_below="@+id/tableLayout2"
         android:layout_alignParentStart="true"/>
 
     <EditText
