@@ -35,6 +35,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -46,9 +47,11 @@ import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
@@ -57,7 +60,9 @@ import java.net.URISyntaxException;
 public class OperateActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int FILE_SELECT_CODE = 0;
+    boolean isInternal = false;
 
+    Button btnKick;
     Button btnOther;
 
     FTPClient ftpClient = new FTPClient();
@@ -104,7 +109,8 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
                     // GET IBMUSER.JCL(IBMUSERF)
                     // Let's just save the output here
                     // Trust me, I'll pick somewhere better for it
-                    File outFile = new File("/storage/sdcard0/jesout.txt");
+                    // Well finally found a kinda suitable home for it...
+                    File outFile = new File("/storage/sdcard0/JCL/jesout.txt");
                     OutputStream outputStream = new FileOutputStream(outFile);
                     // IBMUSER.JCL(IBMUSERF)
                     ftpClient.retrieveFile("'" + username.toUpperCase() + ".JCL(" + username.toUpperCase() + "F)'", outputStream);
@@ -117,7 +123,7 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
                     }
                 }
             } catch (Exception e) {
-                // Eat it
+                e.printStackTrace();
             }
             return execStat;
         }
@@ -132,7 +138,13 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
             if (execStat.equals("FAILED")) {
                 Toast.makeText(OperateActivity.this, execStat, Toast.LENGTH_SHORT).show();
             } else if (execStat.equals("JCL SUBMITTED")) {
-                Toast.makeText(OperateActivity.this, "Check jesout.txt for the output", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OperateActivity.this, "Check JCL/jesout.txt for the output", Toast.LENGTH_SHORT).show();
+                if (isInternal) {
+                    File file = new File(localPath);
+                    if (file.exists()) {
+                        file.delete();
+                    }
+                }
             }
         }
     }
@@ -144,6 +156,10 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_operate);
 
         btnOther = (Button) findViewById(R.id.btn_other);
+        btnKick = (Button) findViewById(R.id.btnKick);
+        if (btnKick != null) {
+            btnKick.setOnClickListener(this);
+        }
         if (btnOther != null) {
             btnOther.setOnClickListener(this);
         }
@@ -177,8 +193,69 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
 
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btnKick:
+                sendKickJCL();
+                break;
             case R.id.btn_other:
                 showFileChooser();
+                break;
+        }
+    }
+
+    /**
+     * Generate a JCL to purge user session
+     */
+    private void sendKickJCL() {
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            final String PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "JCL";
+            StringBuilder sb = new StringBuilder();
+            sb.append(username);
+            sb.append("S");
+            String jobName = sb.toString().toUpperCase();
+            sb.append(".JCL");
+            File path = new File(PATH);
+            String fileName = PATH + File.separator + sb.toString();
+            if (!path.exists()) {
+                path.mkdirs();
+            }
+            File file = new File(fileName);
+            if (file.exists()) {
+                file.delete();
+            }
+            try {
+                FileWriter fw = new FileWriter(fileName, true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                // Following code is to generate the JCL file
+                bw.append("//" + jobName + " JOB CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID,\n");
+                bw.append("// TIME=(,01),USER=" + username.toUpperCase() + ",PASSWORD=" + password.toUpperCase() + "\n");
+                bw.append("//RUN EXEC PGM=SDSF,DYNAMNBR=150,REGION=1024K,TIME=5\n");
+                bw.append("//ISFOUT DD SYSOUT=*\n");
+                bw.append("//ISFIN DD *\n");
+                bw.append(" OWNER " + username.toUpperCase() + "\n");
+                bw.append(" ST " + username.toUpperCase() + "\n");
+                bw.append(" FIND '" + username.toUpperCase() + "'\n");
+                bw.append(" ++P\n");
+                bw.append(" ST\n");
+                bw.append("/*\n");
+                bw.append("//");
+                // Write the file
+                bw.close();
+                fw.close();
+                Intent intent = new Intent();
+                Uri uri = Uri.parse("file://" + fileName);
+                intent.setData(uri);
+                isInternal = true;
+                new SubmitJCL().execute(intent);
+            } catch (Exception e) {
+                Toast.makeText(this, getString(R.string.toast_file_create_fail), Toast.LENGTH_SHORT).show();
+            }
+            // When this file becomes useless, delete it
+//            if (isDone) {
+//                File file = new File(fileName);
+//                if (file.isFile() && file.exists()) {
+//                    file.delete();
+//                }
+//            }
         }
     }
 
@@ -199,6 +276,7 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == FILE_SELECT_CODE && resultCode == RESULT_OK) {
+            isInternal = false;
             new SubmitJCL().execute(data);
         }
         super.onActivityResult(requestCode, resultCode, data);

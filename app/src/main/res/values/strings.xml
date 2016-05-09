@@ -30,4 +30,6 @@
     <string name="hint_port">PORT</string>
     <string name="hint_serverName">SERVER NAME</string>
     <string name="txt_defPort" translatable="false">21</string>
+    <string name="btn_kick">KICK MYSELF OUT</string>
+    <string name="toast_file_create_fail">FAILED TO CREATE JCL FILE</string>
 </resources>
