@@ -1,30 +1,17 @@
 /*
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright 2016 Boris Zhao @ CLB
+ *      Copyright 2016 Boris Zhao
  *
+ *      Licensed under the Apache License, Version 2.0 (the "License");
+ *      you may not use this file except in compliance with the License.
+ *      You may obtain a copy of the License at
  *
- * MainframeRemoteControl is a free software. you can redistribute it and/or modify
- * it under the terms of the Apache License as published by
- * the Apache Software Foundation, either version 2.0 of the License, or
- * (at your option) any later version.
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * MainframeRemoteControl is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * Apache License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with MainframeRemoteControl.  If not, see <http://commons.apache.org/proper/commons-daemon/license.html>.
- *
- * MainframeRemoteControl是一个自由软件，您可以自由分发、修改其中的源代码或者重新发布它，
- * 新的任何修改后的重新发布版必须同样在遵守Apache License 2.0或更后续的版本协议下发布.
- * 关于Apache License协议的细则请参考LICENSE文件，
- * 您可以在MainframeRemoteControl的相关目录中获得Apache License协议的副本，
- * 如果没有找到，请连接到 http://commons.apache.org/proper/commons-daemon/license.html 查看。
- *
- * - Author: Boris Zhao (赵迎东)
- * - Contact: boris1993@126.com
- * - License: Apache License 2.0
+ *      Unless required by applicable law or agreed to in writing, software
+ *      distributed under the License is distributed on an "AS IS" BASIS,
+ *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *      See the License for the specific language governing permissions and
+ *      limitations under the License.
  */
 
 package cn.com.clb.mfremotecontrol;
