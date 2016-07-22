@@ -72,6 +72,7 @@ public class ServerSelectActivity extends AppCompatActivity {
 
         /**
          * Perform the login and return if it is successful
+         *
          * @param args
          * @return
          */
@@ -82,11 +83,10 @@ public class ServerSelectActivity extends AppCompatActivity {
                 ftpClient.login(args[1], args[2]);
                 if (!FTPReply.isPositiveCompletion(ftpClient.getReplyCode())) {
                     connStat = "FAILED";
-                    ftpClient.disconnect();
                 } else {
                     connStat = "SUCCESSFUL";
-                    ftpClient.disconnect();
                 }
+                ftpClient.disconnect();
             } catch (SocketException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -148,7 +148,9 @@ public class ServerSelectActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    if(db.isOpen()) { db.close(); }
+                    if (db.isOpen()) {
+                        db.close();
+                    }
                 }
             }
         });
@@ -167,6 +169,7 @@ public class ServerSelectActivity extends AppCompatActivity {
 
     /**
      * Create an ArrayList with servers in it which will be used in the adapter later
+     *
      * @return ArrayList
      */
     public ArrayList<HashMap<String, Object>> fillList() {
@@ -203,7 +206,9 @@ public class ServerSelectActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (db.isOpen()) { db.close(); }
+            if (db.isOpen()) {
+                db.close();
+            }
         }
         return dataList;
     }
@@ -212,6 +217,7 @@ public class ServerSelectActivity extends AppCompatActivity {
      * An adapter for the ListView
      * "An easy adapter to map static data to views defined in an XML file.",
      * said the Android Developer website.
+     *
      * @param listData
      * @return SimpleAdapter adapter
      */
@@ -231,13 +237,14 @@ public class ServerSelectActivity extends AppCompatActivity {
          */
         return adapter = new SimpleAdapter(this, listData,
                 R.layout.list_item,
-                new String[] {"name", "address"},
-                new int[] {R.id.item_name, R.id.item_address});
+                new String[]{"name", "address"},
+                new int[]{R.id.item_name, R.id.item_address});
     }
     //endregion
 
     /**
      * Delete an item in the server list
+     *
      * @param item
      * @return
      */
@@ -284,7 +291,9 @@ public class ServerSelectActivity extends AppCompatActivity {
                 intent.putExtra("String.port", cursor.getString(cursor.getColumnIndex(DbHelper.C_PORT)));
                 intent.putExtra("String.username", cursor.getString(cursor.getColumnIndex(DbHelper.C_USERNAME)));
                 intent.putExtra("String.password", cursor.getString(cursor.getColumnIndex(DbHelper.C_PASSWORD)));
-                if(db.isOpen()) { db.close(); }
+                if (db.isOpen()) {
+                    db.close();
+                }
                 startActivity(intent);
                 break;
         }
@@ -293,7 +302,8 @@ public class ServerSelectActivity extends AppCompatActivity {
 
     /**
      * Watch for the key press events
-     * @param keycode <== Which key is touched
+     *
+     * @param keycode  <== Which key is touched
      * @param keyEvent <== What operation performed to the key
      * @return
      */
