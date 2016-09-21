@@ -31,7 +31,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class AddServerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //region FTP Utilities
+    //region Database Utilities
     DbHelper dbHelper;
     SQLiteDatabase db;
     //endregion
@@ -44,12 +44,13 @@ public class AddServerActivity extends AppCompatActivity implements View.OnClick
     EditText txtPort;
     Button btnSubmit;
     Button btnReset;
+    //endregion
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,7 @@ public class AddServerActivity extends AppCompatActivity implements View.OnClick
 
     /**
      * Watch for the button click events
+     *
      * @param v
      */
     public void onClick(View v) {
@@ -104,9 +106,11 @@ public class AddServerActivity extends AppCompatActivity implements View.OnClick
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    if (db.isOpen()) { db.close(); }
+                    if (db.isOpen()) {
+                        db.close();
+                    }
                 }
-                this.startActivity( new Intent(this, ServerSelectActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) );
+                this.startActivity(new Intent(this, ServerSelectActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 break;
             }
             case R.id.btnReset: {
