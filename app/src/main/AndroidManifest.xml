@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="cn.com.clb.mfremotecontrol"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="cn.com.clb.mfremotecontrol">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -13,10 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".AddServerActivity"
-            android:label="@string/title_add">
-        </activity>
+
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -26,19 +23,27 @@
             android:value="@integer/google_play_services_version"/>
 
         <activity
+            android:name=".AddServerActivity"
+            android:label="@string/title_add">
+        </activity>
+
+        <activity
             android:name="cn.com.clb.mfremotecontrol.ServerSelectActivity"
-            android:label="@string/title_serverSelect">
+            android:label="@string/app_name">
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
         </activity>
+
         <activity
             android:name="cn.com.clb.mfremotecontrol.OperateActivity"
             android:label="@string/title_operate">
         </activity>
-        <activity android:name="cn.com.clb.mfremotecontrol.EditServerActivity"
+
+        <activity
+            android:name="cn.com.clb.mfremotecontrol.EditServerActivity"
             android:label="@string/title_edit">
         </activity>
     </application>

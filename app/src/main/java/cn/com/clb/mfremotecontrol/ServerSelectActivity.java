@@ -117,6 +117,9 @@ public class ServerSelectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getActionBar().setTitle(R.string.title_serverSelect);
+
         setContentView(R.layout.activity_server_select);
         listView = (ListView) findViewById(R.id.serverList);
 
