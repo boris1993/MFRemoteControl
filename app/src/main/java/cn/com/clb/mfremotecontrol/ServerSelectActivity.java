@@ -118,10 +118,9 @@ public class ServerSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getActionBar().setTitle(R.string.title_serverSelect);
-
         setContentView(R.layout.activity_server_select);
         listView = (ListView) findViewById(R.id.serverList);
+//        getActionBar().setTitle(R.string.title_serverSelect);
 
         // Make an ArrayList with data in it
         listData = fillList();
