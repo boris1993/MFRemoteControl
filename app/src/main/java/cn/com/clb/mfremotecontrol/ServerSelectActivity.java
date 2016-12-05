@@ -40,6 +40,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ServerSelectActivity extends AppCompatActivity {
     private long exitTime = 0;
@@ -66,6 +67,7 @@ public class ServerSelectActivity extends AppCompatActivity {
     class LoginToServer extends AsyncTask<String, Integer, String> {
         String connStat = "FAILED";
 
+        // Show a toast before executing
         @Override
         protected void onPreExecute() {
             Toast.makeText(getApplicationContext(), "CONNECTING...", Toast.LENGTH_SHORT).show();
@@ -74,22 +76,24 @@ public class ServerSelectActivity extends AppCompatActivity {
         /**
          * Perform the login and return if it is successful
          *
-         * @param args
+         * @param args {address, username, password}
          * @return
          */
         @Override
         protected String doInBackground(String... args) {
             try {
+                // Get address from args[0]
                 ftpClient.connect(InetAddress.getByName(args[0]));
+                // Get username from args[1] and password from args[2]
                 ftpClient.login(args[1], args[2]);
+                // Is login successful?
                 if (!FTPReply.isPositiveCompletion(ftpClient.getReplyCode())) {
                     connStat = "FAILED";
                 } else {
                     connStat = "SUCCESSFUL";
                 }
+                // When finished, release the connection
                 ftpClient.disconnect();
-            } catch (SocketException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -105,16 +109,20 @@ public class ServerSelectActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             Toast.makeText(ServerSelectActivity.this, result, Toast.LENGTH_SHORT).show();
             if (result.equals("SUCCESSFUL")) {
+                // Create an intent and tell it where we want to go
                 Intent intent = new Intent(ServerSelectActivity.this, OperateActivity.class);
+                // Let the intent carry essential information for us
                 intent.putExtra("String.ipaddr", address);
                 intent.putExtra("String.username", username);
                 intent.putExtra("String.password", password);
+                // And GO!
                 startActivity(intent);
             }
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -252,16 +260,17 @@ public class ServerSelectActivity extends AppCompatActivity {
      * @return
      */
     @Override
+    @SuppressWarnings("unchecked")
     public boolean onContextItemSelected(MenuItem item) {
         Intent intent;
         AdapterView.AdapterContextMenuInfo menuInfo;
         menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        HashMap<String, String> map;
+        Map<String, String> map;
         String addr;
         switch (item.getItemId()) {
             case 0:
                 // Get selected item and save into a HashMap
-                map = (HashMap<String, String>) listView.getItemAtPosition(menuInfo.position);
+                map = (Map<String, String>) listView.getItemAtPosition(menuInfo.position);
                 // Fetch the IP address as the condition when deleting
                 addr = map.get("address");
                 // Make the database writable

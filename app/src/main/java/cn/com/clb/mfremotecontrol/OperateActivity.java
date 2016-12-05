@@ -61,7 +61,7 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
     class SubmitJCL extends AsyncTask<Intent, Integer, String> {
         String execStat = "FAILED";
 
-        public SubmitJCL() {
+        SubmitJCL() {
             super();
         }
 
@@ -73,24 +73,33 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
         /**
          * Process the login and return if it is successful
          *
-         * @param args
+         * @param args {args[0] = data, args[1] = remotePath, args[2] = password}
          * @return connStat = {"SUCCESSFUL" , "FAILED"}
-         * @description args[0] = data, args[1] = remotePath, args[2] = password
+         * @description
          */
         @Override
         protected String doInBackground(Intent... args) {
+            // Specify which data set is to be used for saving the uploaded JCL
+            // Like 'IBMUSER.JCL(IBMUSERF)'
             String remotePath = "'" + username.toUpperCase() + ".JCL(" + username.toUpperCase() + "F)'";
             Uri uri = args[0].getData();
             try {
+                // Get path to local JCL file
                 localPath = getPath(OperateActivity.this, uri);
+                // And try to connect to the server by the given username and password
+                // Username and password are fetched in function onCreate()
                 ftpClient.connect(InetAddress.getByName(address));
                 ftpClient.login(username, password);
                 if (!FTPReply.isPositiveCompletion(ftpClient.getReplyCode())) {
                     Toast.makeText(OperateActivity.this, getString(R.string.toast_conn_fail), Toast.LENGTH_SHORT).show();
                 } else {
+                    // Send JCL to a data set in Mainframe
+                    // Mode = ASCII
                     ftpClient.setFileType(FTP.ASCII_FILE_TYPE);
                     FileInputStream fistream = new FileInputStream(new File(localPath));
+                    // Send to data set
                     boolean result = ftpClient.storeFile(remotePath, fistream);
+                    // Switch to JES
                     ftpClient.sendSiteCommand("FILETYPE=JES");
                     // GET IBMUSER.JCL(IBMUSERF)
                     // Let's just save the output here
@@ -98,7 +107,8 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
                     // Well finally found a kinda suitable home for it...
                     File outFile = new File("/storage/sdcard0/JCL/jesout.txt");
                     OutputStream outputStream = new FileOutputStream(outFile);
-                    // IBMUSER.JCL(IBMUSERF)
+                    // ftp> get 'IBMUSER.JCL(IBMUSERF)'
+                    // And wait for the output from JES
                     ftpClient.retrieveFile("'" + username.toUpperCase() + ".JCL(" + username.toUpperCase() + "F)'", outputStream);
                     fistream.close();
                     outputStream.close();
@@ -193,18 +203,23 @@ public class OperateActivity extends AppCompatActivity implements View.OnClickLi
      */
     private void sendKickJCL() {
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            // $PATH_TO_SDCARD/JCL
             final String PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "JCL";
             StringBuilder sb = new StringBuilder();
+            // Generate file name
+            // Filename = tsoidS.JCL
             sb.append(username);
             sb.append("S");
             String jobName = sb.toString().toUpperCase();
             sb.append(".JCL");
             File path = new File(PATH);
             String fileName = PATH + File.separator + sb.toString();
+            // Create this directory if the directory does not exist
             if (!path.exists()) {
                 path.mkdirs();
             }
             File file = new File(fileName);
+            // Delete outdated JCL if exist
             if (file.exists()) {
                 file.delete();
             }
